@@ -1,16 +1,14 @@
-define('components/planet', [
+define('components/planet', [], function () {
 
-    'jquery'
+    var EARTH_YEARS_PER_SECOND = 3;
 
-], function (
-
-    $
-
-) {
+    var SYSTEM_FREQUENCY = 1000 / EARTH_YEARS_PER_SECOND;
 
     function Planet (data, $el) {
 
         this.model = data;
+
+        this.model.selfYearInEarthYear = 1 / this.model.year;
 
         this.$el = $el;
 
@@ -20,11 +18,13 @@ define('components/planet', [
 
             distance : this.$el.find('[data-distance-from-sun]'),
 
-            timesAround : this.$el.find('[data-times-around-sun]')
+            yearsGone : this.$el.find('[data-times-around-sun]')
 
         };
 
         this.renderStatic();
+
+        this.startEpoch();
     }
 
     Planet.prototype = {
@@ -35,7 +35,21 @@ define('components/planet', [
 
             this.tpl.distance.text(this.model.distance);
 
-            this.tpl.timesAround.text(0);
+            this.tpl.yearsGone.text(0);
+        },
+
+        startEpoch : function () {
+            this.model.yearsGone = 0;
+            this.epoch = setInterval(this.countPlanetAge.bind(this), SYSTEM_FREQUENCY);
+        },
+
+        countPlanetAge : function () {
+            this.model.yearsGone += this.model.selfYearInEarthYear;
+            this.renderYearsGone();
+        },
+
+        renderYearsGone : function () {
+            this.tpl.yearsGone.text(this.model.yearsGone.toFixed(2));
         }
 
     };
