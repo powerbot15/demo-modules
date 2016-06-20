@@ -71,12 +71,17 @@ define('components/planet', [], function () {
             var y = this.model.distance * Math.sin(angle);
 
             context.fillStyle = this.model.color;
+
             context.strokeStyle = this.model.color;
 
             context.beginPath();
+
             context.arc(x + systemCenter.x, y + systemCenter.y, 10, 0, FULL_CIRCLE);
+
             context.fill();
-            //context.stroke();
+
+            context.stroke();
+
             context.closePath();
 
         }
