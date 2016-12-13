@@ -4,3 +4,32 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul > li{
+    margin: 0;
+    padding: 10px;
+}
+
+.inline{
+    display : inline-block;
+    vertical-align: top;
+}
+
+.part-30{
+    width : calc(30% - 2px);
+}
+
+.part-70{
+    width : calc(70% - 2px);
+}
+
+.wrap{
+    width: 1080px;
+    margin: auto;
+}

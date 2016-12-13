@@ -17,7 +17,7 @@ define('components/sun', [], function () {
         },
 
         pulse : function () {
-            this.radius = RADIUS * (1 + (Math.random() / 2));
+            this.radius = RADIUS * (1 + (Math.random() / 10));
         }
 
     };
